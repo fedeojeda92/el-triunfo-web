@@ -1,5 +1,6 @@
 'use client'
 import { useState, useMemo } from 'react'
+import { useSearchParams } from 'next/navigation'
 import ProductCard from '@/components/ProductCard'
 import type { Producto } from '@/data/productos'
 
@@ -11,7 +12,8 @@ type Props = {
 }
 
 export default function CatalogoCliente({ productos, categorias }: Props) {
-  const [categoriaActiva, setCategoriaActiva] = useState('todos')
+  const searchParams = useSearchParams()
+  const [categoriaActiva, setCategoriaActiva] = useState(() => searchParams.get('categoria') || 'todos')
   const [orden, setOrden] = useState('default')
 
   const productosFiltrados = useMemo(() => {

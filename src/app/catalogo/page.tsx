@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { productos, categorias } from '@/data/productos'
 import CatalogoCliente from '@/components/CatalogoCliente'
 import type { Metadata } from 'next'
@@ -19,10 +20,12 @@ export default function CatalogoPage() {
             {productos.length} productos disponibles
           </p>
         </div>
-        <CatalogoCliente
-          productos={productos}
-          categorias={categorias}
-        />
+        <Suspense fallback={<p className="text-[#666666]">Cargando catálogo...</p>}>
+          <CatalogoCliente
+            productos={productos}
+            categorias={categorias}
+          />
+        </Suspense>
       </div>
     </main>
   )
