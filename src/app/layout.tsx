@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 import { Inter, Bebas_Neue } from "next/font/google"
+import Providers from "@/components/Providers"
 import Navbar from "@/components/Navbar"
 import WhatsAppButton from "@/components/WhatsAppButton"
 import "./globals.css"
@@ -72,9 +73,11 @@ export default function RootLayout({
         />
       </head>
       <body className="font-inter antialiased bg-[#F8F8F8] text-[#222222]">
-        <Navbar />
-        <main>{children}</main>
-        <WhatsAppButton />
+        <Providers>
+          <Navbar />
+          <main>{children}</main>
+          <WhatsAppButton />
+        </Providers>
       </body>
     </html>
   )

@@ -38,10 +38,11 @@ export default function ContactoFooter() {
 
         <div className="text-center mb-12">
           <h3 className="font-bebas text-2xl mb-4">Medios de pago</h3>
-          <div className="flex justify-center gap-8 text-lg">
+          <div className="flex flex-wrap justify-center gap-6 text-lg">
             <span>💵 Efectivo</span>
             <span>🏦 Transferencia</span>
             <span>💳 Débito</span>
+            <span>💳 Crédito</span>
           </div>
         </div>
 
