@@ -1,21 +1,29 @@
-import type { Metadata } from "next"
-import { Suspense } from "react"
-import CatalogoGrid from "@/components/CatalogoGrid"
-import ContactoFooter from "@/components/ContactoFooter"
+import { productos, categorias } from '@/data/productos'
+import CatalogoCliente from '@/components/CatalogoCliente'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: "Catálogo | El Triunfo Berazategui",
-  description:
-    "Explorá nuestro catálogo completo de zapatillas, borcegos, buzos y remeras en Berazategui.",
+  title: 'Catálogo | El Triunfo Berazategui',
+  description: 'Explorá nuestro catálogo completo de zapatillas, borcegos, buzos y remeras en Berazategui. Precios con efectivo, transferencia y débito.',
 }
 
 export default function CatalogoPage() {
   return (
-    <>
-      <Suspense fallback={<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10"><p className="text-text-muted">Cargando catálogo...</p></div>}>
-        <CatalogoGrid />
-      </Suspense>
-      <ContactoFooter />
-    </>
+    <main className="min-h-screen bg-[#F8F8F8] pt-20">
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold font-bebas text-[#111111] mb-2">
+            CATÁLOGO COMPLETO
+          </h1>
+          <p className="text-[#666666]">
+            {productos.length} productos disponibles
+          </p>
+        </div>
+        <CatalogoCliente
+          productos={productos}
+          categorias={categorias}
+        />
+      </div>
+    </main>
   )
 }
