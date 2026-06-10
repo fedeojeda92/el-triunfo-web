@@ -20,25 +20,32 @@ type CartContextType = {
   totalPrice: number
   isOpen: boolean
   setIsOpen: (open: boolean) => void
+  hidratado: boolean
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined)
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>(() => {
-    if (typeof window === "undefined") return []
-    try {
-      const guardado = localStorage.getItem("el-triunfo-carrito")
-      return guardado ? JSON.parse(guardado) : []
-    } catch {
-      return []
-    }
-  })
+  const [items, setItems] = useState<CartItem[]>([])
   const [isOpen, setIsOpen] = useState(false)
+  const [hidratado, setHidratado] = useState(false)
 
   useEffect(() => {
+    try {
+      const guardado = localStorage.getItem("el-triunfo-carrito")
+      if (guardado) {
+        setItems(JSON.parse(guardado))
+      }
+    } catch {
+      // localStorage bloqueado o datos corruptos, ignorar
+    }
+    setHidratado(true)
+  }, [])
+
+  useEffect(() => {
+    if (!hidratado) return
     localStorage.setItem("el-triunfo-carrito", JSON.stringify(items))
-  }, [items])
+  }, [items, hidratado])
 
   const addItem = useCallback(
     (producto: Producto, talle: string, medioPago: CartItem["medioPago"]) => {
@@ -118,6 +125,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         totalPrice,
         isOpen,
         setIsOpen,
+        hidratado,
       }}
     >
       {children}
