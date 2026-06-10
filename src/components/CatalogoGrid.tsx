@@ -1,13 +1,16 @@
 "use client"
 
 import { useState, useMemo } from "react"
+import { useSearchParams } from "next/navigation"
 import { productos } from "@/data/productos"
 import ProductCard from "./ProductCard"
 import Filtros from "./Filtros"
 import { motion } from "framer-motion"
 
 export default function CatalogoGrid() {
-  const [categoriaSel, setCategoriaSel] = useState("todos")
+  const searchParams = useSearchParams()
+  const categoriaInicial = searchParams.get("categoria") || "todos"
+  const [categoriaSel, setCategoriaSel] = useState(categoriaInicial)
   const [rangoPrecio, setRangoPrecio] = useState([0, 150000])
   const [orden, setOrden] = useState("")
 

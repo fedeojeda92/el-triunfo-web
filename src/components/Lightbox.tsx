@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useRef, useEffect } from "react"
-import Image from "next/image"
 import { motion, AnimatePresence } from "framer-motion"
 
 type Props = {
@@ -161,7 +160,7 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM13.5 10.5H6"
+                  d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3H7.5"
                 />
               </svg>
             </button>
@@ -179,27 +178,20 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
             onPointerUp={handlePointerUp}
             style={{ cursor: scale > 1 ? (isDragging ? "grabbing" : "grab") : "zoom-in" }}
           >
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.2 }}
+            <div
               onDoubleClick={handleDoubleClick}
               style={{
                 transform: `scale(${scale}) translate(${position.x / scale}px, ${position.y / scale}px)`,
                 transition: isDragging ? "none" : "transform 0.2s ease",
               }}
             >
-              <Image
+              <img
                 src={src}
                 alt={alt}
-                width={800}
-                height={800}
-                className="object-contain max-h-[85vh] max-w-[90vw] select-none"
+                className="max-h-[85vh] max-w-[90vw] select-none object-contain"
                 draggable={false}
-                priority
               />
-            </motion.div>
+            </div>
           </div>
         </motion.div>
       )}
