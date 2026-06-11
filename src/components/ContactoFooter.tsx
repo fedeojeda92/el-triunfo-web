@@ -60,6 +60,18 @@ export default function ContactoFooter() {
         <div className="border-t border-white/10 mt-12 pt-8 text-center text-gray-500 text-sm">
           © 2025 El Triunfo · Berazategui, Buenos Aires
         </div>
+
+        <p className="text-center mt-4 text-xs opacity-50">
+          Desarrollado por{' '}
+          <a
+            href="https://www.fdveloper.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:opacity-80 transition-opacity"
+          >
+            FDveloper
+          </a>
+        </p>
       </div>
     </footer>
   )
