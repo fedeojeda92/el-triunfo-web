@@ -20,8 +20,11 @@ export default function Navbar() {
   return (
     <nav
       className={`sticky top-0 z-40 transition-all duration-300 ${
-        scrolled ? "bg-white shadow-md" : "bg-white"
+        scrolled
+          ? "bg-black/95 backdrop-blur-md shadow-lg"
+          : "bg-black/95 backdrop-blur-md"
       }`}
+      style={{ borderBottom: "1px solid rgba(255,255,255,0.08)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -34,10 +37,10 @@ export default function Navbar() {
               className="h-12 w-auto"
             />
             <div className="hidden sm:flex flex-col">
-              <span className="font-bebas text-2xl text-primary tracking-wider leading-tight">
+              <span className="font-bebas text-2xl text-white tracking-wider leading-tight">
                 EL TRIUNFO
               </span>
-              <span className="text-[10px] text-text-muted font-inter tracking-wide">
+              <span className="text-[10px] text-white/40 font-inter tracking-wide">
                 Ropa y Calzado · Berazategui
               </span>
             </div>
@@ -46,32 +49,32 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-8">
             <Link
               href="/"
-              className="text-sm font-medium text-text hover:text-primary transition-colors"
+              className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors duration-200"
             >
               Inicio
             </Link>
             <Link
               href="/catalogo"
-              className="text-sm font-medium text-text hover:text-primary transition-colors"
+              className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors duration-200"
             >
               Catálogo
             </Link>
-            <a
-              href="#locales"
-              className="text-sm font-medium text-text hover:text-primary transition-colors"
+            <Link
+              href="/#locales"
+              className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors duration-200"
             >
               Locales
-            </a>
-            <a
-              href="#contacto"
-              className="text-sm font-medium text-text hover:text-primary transition-colors"
+            </Link>
+            <Link
+              href="/#contacto"
+              className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors duration-200"
             >
               Contacto
-            </a>
+            </Link>
 
             <button
               onClick={() => setIsOpen(true)}
-              className="relative p-2 text-text hover:text-primary transition-colors"
+              className="relative p-2 text-white/70 hover:text-red-500 transition-colors duration-200"
               aria-label="Carrito"
             >
               <svg
@@ -89,7 +92,7 @@ export default function Navbar() {
                 />
               </svg>
               {hidratado && totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {totalItems}
                 </span>
               )}
@@ -97,7 +100,8 @@ export default function Navbar() {
 
             <Link
               href="/catalogo"
-              className="bg-primary text-white px-5 py-2 rounded-md text-sm font-medium hover:bg-red-700 transition-colors"
+              className="bg-red-600 text-white px-5 py-2 rounded-full text-sm font-semibold hover:bg-red-500 transition-all duration-200"
+              style={{ boxShadow: "0 0 20px rgba(220,38,38,0.3)" }}
             >
               Ver catálogo
             </Link>
@@ -106,7 +110,7 @@ export default function Navbar() {
           <div className="flex items-center gap-2 md:hidden">
             <button
               onClick={() => setIsOpen(true)}
-              className="relative p-2 text-text"
+              className="relative p-2 text-white/70"
               aria-label="Carrito"
             >
               <svg
@@ -124,7 +128,7 @@ export default function Navbar() {
                 />
               </svg>
               {hidratado && totalItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center font-bold">
                   {totalItems}
                 </span>
               )}
@@ -136,17 +140,17 @@ export default function Navbar() {
               aria-label="Menú"
             >
               <span
-                className={`block w-6 h-0.5 bg-text transition-transform duration-300 ${
+                className={`block w-6 h-0.5 bg-white transition-transform duration-300 ${
                   menuOpen ? "rotate-45 translate-y-2" : ""
                 }`}
               />
               <span
-                className={`block w-6 h-0.5 bg-text transition-opacity duration-300 ${
+                className={`block w-6 h-0.5 bg-white transition-opacity duration-300 ${
                   menuOpen ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`block w-6 h-0.5 bg-text transition-transform duration-300 ${
+                className={`block w-6 h-0.5 bg-white transition-transform duration-300 ${
                   menuOpen ? "-rotate-45 -translate-y-2" : ""
                 }`}
               />
@@ -161,40 +165,40 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-white border-t border-border"
+            className="md:hidden overflow-hidden bg-black/95 backdrop-blur-md border-t border-white/10"
           >
             <div className="px-4 py-4 flex flex-col gap-4">
               <Link
                 href="/"
-                className="text-sm font-medium text-text"
+                className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Inicio
               </Link>
               <Link
                 href="/catalogo"
-                className="text-sm font-medium text-text"
+                className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Catálogo
               </Link>
-              <a
-                href="#locales"
-                className="text-sm font-medium text-text"
+              <Link
+                href="/#locales"
+                className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Locales
-              </a>
-              <a
-                href="#contacto"
-                className="text-sm font-medium text-text"
+              </Link>
+              <Link
+                href="/#contacto"
+                className="text-sm font-medium text-white/70 hover:text-red-500 transition-colors"
                 onClick={() => setMenuOpen(false)}
               >
                 Contacto
-              </a>
+              </Link>
               <Link
                 href="/catalogo"
-                className="bg-primary text-white px-5 py-2 rounded-md text-sm font-medium text-center"
+                className="bg-red-600 text-white px-5 py-2 rounded-full text-sm font-semibold text-center"
                 onClick={() => setMenuOpen(false)}
               >
                 Ver catálogo

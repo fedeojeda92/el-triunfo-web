@@ -10,17 +10,17 @@ export const metadata: Metadata = {
 
 export default function CatalogoPage() {
   return (
-    <main className="min-h-screen bg-[#F8F8F8] pt-20">
+    <main className="min-h-screen bg-[#0a0a0a] pt-16">
       <div className="max-w-7xl mx-auto px-4 py-8">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold font-bebas text-[#111111] mb-2">
+          <h1 className="text-4xl font-bold font-bebas text-white mb-2">
             CATÁLOGO COMPLETO
           </h1>
-          <p className="text-[#666666]">
+          <p className="text-white/50">
             {productos.length} productos disponibles
           </p>
         </div>
-        <Suspense fallback={<p className="text-[#666666]">Cargando catálogo...</p>}>
+        <Suspense fallback={<p className="text-white/50">Cargando catálogo...</p>}>
           <CatalogoCliente
             productos={productos}
             categorias={categorias}

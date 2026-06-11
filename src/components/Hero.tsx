@@ -26,7 +26,7 @@ export default function Hero() {
   }, [next])
 
   return (
-    <section className="relative bg-secondary h-[550px] sm:h-[600px] lg:h-[650px] flex items-center overflow-hidden">
+    <section className="relative bg-[#0a0a0a] h-[550px] sm:h-[600px] lg:h-[650px] flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <AnimatePresence mode="popLayout">
           <motion.div
@@ -46,8 +46,8 @@ export default function Hero() {
             />
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/70 to-secondary/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-secondary via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/70 to-[#0a0a0a]/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
@@ -57,7 +57,9 @@ export default function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <span className="inline-block bg-primary text-white text-xs font-bold px-4 py-1.5 rounded mb-6 tracking-wide uppercase">
+            <span
+              className="inline-block border border-red-600/50 backdrop-blur-sm text-red-500 text-xs font-bold px-4 py-1.5 rounded mb-6 tracking-wide uppercase"
+            >
               2 locales en Berazategui
             </span>
           </motion.div>
@@ -69,21 +71,21 @@ export default function Hero() {
             className="font-bebas text-6xl sm:text-7xl lg:text-8xl text-white leading-[0.9] tracking-wide"
           >
             TU ESTILO
-            <span className="block text-primary">TU PRECIO</span>
+            <span className="block text-red-600">TU PRECIO</span>
           </motion.h1>
 
           <motion.div
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-20 h-1 bg-primary mt-6 mb-6 rounded-full origin-left"
+            className="w-20 h-1 bg-red-600 mt-6 mb-6 rounded-full origin-left"
           />
 
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="text-gray-300 text-lg max-w-md"
+            className="text-white/70 text-lg max-w-md"
           >
             Ropa y calzado de marca en Berazategui
           </motion.p>
@@ -96,13 +98,14 @@ export default function Hero() {
           >
             <Link
               href="/catalogo"
-              className="bg-primary text-white px-10 py-3.5 rounded font-semibold text-center hover:bg-red-700 transition-colors text-sm uppercase tracking-wider"
+              className="bg-red-600 text-white px-10 py-3.5 rounded font-semibold text-center hover:bg-red-500 transition-colors text-sm uppercase tracking-wider"
+              style={{ boxShadow: "0 0 20px rgba(220,38,38,0.3)" }}
             >
               Ver catálogo
             </Link>
             <a
               href="#contacto"
-              className="border-2 border-white/30 text-white px-10 py-3.5 rounded font-semibold text-center hover:bg-white hover:text-secondary transition-colors text-sm uppercase tracking-wider"
+              className="border border-white/20 text-white px-10 py-3.5 rounded font-semibold text-center hover:border-white/60 transition-colors text-sm uppercase tracking-wider bg-transparent"
             >
               Contactanos
             </a>
@@ -117,12 +120,14 @@ export default function Hero() {
             onClick={() => setCurrent(i)}
             className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
               i === current
-                ? "bg-primary w-8"
+                ? "bg-red-600 w-8"
                 : "bg-white/30 hover:bg-white/50"
             }`}
           />
         ))}
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
     </section>
   )
 }

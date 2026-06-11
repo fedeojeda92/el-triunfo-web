@@ -42,22 +42,22 @@ export default function ProductCard({ producto }: { producto: Producto }) {
   }
 
   return (
-    <div className="group bg-white rounded-xl overflow-hidden border border-border hover:shadow-lg transition-all duration-300">
+    <div className="group bg-[#111111] border border-white/5 rounded-2xl overflow-hidden hover:border-white/15 transition-all duration-300 hover:-translate-y-1">
       <div
-        className="relative w-full aspect-square bg-[#F0F0F0] flex items-center justify-center overflow-hidden cursor-zoom-in"
+        className="relative w-full aspect-square bg-[#1a1a1a] flex items-center justify-center overflow-hidden cursor-zoom-in"
         onClick={() => setLightboxOpen(true)}
       >
         <Image
           src={producto.imagen}
           alt={producto.nombre}
           fill
-          className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+          className="object-contain p-4 scale-90 group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             const target = e.currentTarget
             target.src = "/images/placeholder.svg"
           }}
         />
-        <span className="absolute top-2 left-2 bg-primary text-white text-xs font-semibold px-2 py-1 rounded">
+        <span className="absolute top-3 left-3 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
           {categoriaLabels[producto.categoria] || producto.categoria}
         </span>
       </div>
@@ -70,15 +70,15 @@ export default function ProductCard({ producto }: { producto: Producto }) {
       />
 
       <div className="p-4">
-        <h3 className="font-medium text-text line-clamp-2 mb-2">
+        <h3 className="font-bold text-white text-base mb-2 line-clamp-2">
           {producto.nombre}
         </h3>
 
         <div className="mb-3">
-          <span className="text-primary font-bold text-lg">
+          <span className="text-red-500 font-black text-xl">
             {formatPrice(precioActual)}
           </span>
-          <span className="text-text-muted text-xs ml-1">{medioPago}</span>
+          <span className="text-white/30 text-xs ml-1">efectivo</span>
         </div>
 
         <div className="flex flex-wrap gap-1.5 mb-3">
@@ -86,10 +86,10 @@ export default function ProductCard({ producto }: { producto: Producto }) {
             <button
               key={mp.id}
               onClick={() => setMedioPago(mp.id)}
-              className={`px-2 py-1 text-xs rounded-full border transition-colors ${
+              className={`px-3 py-1 text-xs rounded-full border transition-colors ${
                 medioPago === mp.id
-                  ? "bg-secondary text-white border-secondary"
-                  : "bg-white text-text border-border hover:border-secondary"
+                  ? "bg-red-600 text-white border-red-600"
+                  : "bg-[#1a1a1a] text-white/50 border-white/10 hover:border-white/30"
               }`}
             >
               {mp.label}
@@ -102,10 +102,10 @@ export default function ProductCard({ producto }: { producto: Producto }) {
             <button
               key={talle}
               onClick={() => setTalleSeleccionado(talle)}
-              className={`px-2.5 py-1 text-xs rounded-full border transition-colors ${
+              className={`w-10 h-10 text-sm font-medium rounded-lg border transition-colors ${
                 talleSeleccionado === talle
-                  ? "bg-primary text-white border-primary"
-                  : "bg-white text-text border-border hover:border-primary"
+                  ? "bg-red-600 text-white border-red-600"
+                  : "bg-[#1a1a1a] text-white border-white/15 hover:border-red-600 hover:text-red-500"
               }`}
             >
               {talle}
@@ -113,16 +113,25 @@ export default function ProductCard({ producto }: { producto: Producto }) {
           ))}
         </div>
 
+        {!talleSeleccionado && (
+          <p className="text-white/30 text-sm mb-3">Seleccioná un talle</p>
+        )}
+
         <button
           onClick={handleAddToCart}
           disabled={!talleSeleccionado}
-          className={`w-full py-2.5 rounded-md text-sm font-medium transition-colors ${
+          className={`w-full py-3 rounded-xl text-sm font-bold transition-all duration-200 ${
             !talleSeleccionado
-              ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+              ? "bg-[#1a1a1a] text-white/20 cursor-not-allowed"
               : agregado
               ? "bg-green-600 text-white"
-              : "bg-primary text-white hover:bg-red-700"
+              : "bg-red-600 text-white hover:bg-red-500"
           }`}
+          style={
+            talleSeleccionado && !agregado
+              ? { boxShadow: "0 4px 15px rgba(220,38,38,0.3)" }
+              : undefined
+          }
         >
           {!talleSeleccionado
             ? "Seleccioná un talle"

@@ -72,7 +72,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="font-inter antialiased bg-[#F8F8F8] text-[#222222]">
+      <body className="font-inter antialiased bg-[#0a0a0a] text-white">
         <Providers>
           <Navbar />
           <main>{children}</main>

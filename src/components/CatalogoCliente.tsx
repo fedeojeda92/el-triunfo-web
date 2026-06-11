@@ -43,11 +43,11 @@ export default function CatalogoCliente({ productos, categorias }: Props) {
           <button
             key={cat.id}
             onClick={() => setCategoriaActiva(cat.id)}
-            className={`px-4 py-2 rounded-full text-sm font-medium
+            className={`px-5 py-2 rounded-full text-sm font-medium
               whitespace-nowrap transition-all
               ${categoriaActiva === cat.id
-                ? 'bg-[#CC0000] text-white'
-                : 'bg-white text-[#222222] border border-[#E5E5E5] hover:border-[#CC0000]'
+                ? 'bg-red-600 text-white border border-red-600'
+                : 'bg-[#1a1a1a] text-white/60 border border-white/10 hover:border-white/30'
               }`}
           >
             {cat.label}
@@ -57,7 +57,7 @@ export default function CatalogoCliente({ productos, categorias }: Props) {
           value={orden}
           onChange={(e) => setOrden(e.target.value)}
           className="ml-auto px-4 py-2 rounded-full text-sm border
-            border-[#E5E5E5] bg-white text-[#222222] outline-none cursor-pointer"
+            border-white/10 bg-[#1a1a1a] text-white/60 outline-none cursor-pointer"
         >
           <option value="default">Ordenar</option>
           <option value="precio-asc">Menor precio</option>
@@ -66,7 +66,7 @@ export default function CatalogoCliente({ productos, categorias }: Props) {
       </div>
 
       {/* Contador */}
-      <p className="text-sm text-[#666666] mb-4">
+      <p className="text-sm text-white/50 mb-4">
         Mostrando {productosFiltrados.length} productos
       </p>
 
@@ -79,7 +79,7 @@ export default function CatalogoCliente({ productos, categorias }: Props) {
         </div>
       ) : (
         <div className="text-center py-20">
-          <p className="text-[#666666] text-lg">
+          <p className="text-white/50 text-lg">
             No encontramos productos en esta categoría
           </p>
         </div>

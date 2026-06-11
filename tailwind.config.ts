@@ -11,11 +11,11 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#CC0000",
-        secondary: "#111111",
-        text: "#222222",
-        "text-muted": "#666666",
-        border: "#E5E5E5",
+        primary: "#dc2626",
+        secondary: "#0a0a0a",
+        text: "#ffffff",
+        "text-muted": "#a3a3a3",
+        border: "#2a2a2a",
       },
       fontFamily: {
         bebas: ['"Bebas Neue"', "sans-serif"],

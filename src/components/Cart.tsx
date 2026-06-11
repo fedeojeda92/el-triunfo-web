@@ -62,7 +62,7 @@ export default function Cart() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/50 z-50"
+            className="fixed inset-0 bg-black/70 z-50"
             onClick={() => setIsOpen(false)}
           />
 
@@ -71,13 +71,14 @@ export default function Cart() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed right-0 top-0 h-full w-full max-w-md bg-white z-50 shadow-2xl flex flex-col"
+            className="fixed right-0 top-0 h-full w-full max-w-md bg-[#0f0f0f] z-50 shadow-2xl flex flex-col"
+            style={{ borderLeft: "1px solid rgba(255,255,255,0.1)" }}
           >
-            <div className="flex items-center justify-between p-4 border-b border-border">
-              <h2 className="font-bebas text-2xl text-text">Mi Carrito</h2>
+            <div className="flex items-center justify-between p-4" style={{ borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
+              <h2 className="font-bebas text-2xl text-white tracking-wider">MI CARRITO</h2>
               <button
                 onClick={() => setIsOpen(false)}
-                className="text-text-muted hover:text-text transition-colors"
+                className="text-white/40 hover:text-white transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -105,7 +106,7 @@ export default function Cart() {
                     viewBox="0 0 24 24"
                     strokeWidth={1.5}
                     stroke="currentColor"
-                    className="w-16 h-16 text-text-muted mb-4"
+                    className="w-16 h-16 text-white/20 mb-4"
                   >
                     <path
                       strokeLinecap="round"
@@ -113,8 +114,8 @@ export default function Cart() {
                       d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
                     />
                   </svg>
-                  <p className="text-text-muted font-medium">Tu carrito está vacío</p>
-                  <p className="text-text-muted text-sm mt-1">
+                  <p className="text-white/60 font-medium">Tu carrito está vacío</p>
+                  <p className="text-white/30 text-sm mt-1">
                     Agregá productos para comenzar tu compra
                   </p>
                 </div>
@@ -123,9 +124,9 @@ export default function Cart() {
                   {items.map((item) => (
                     <div
                       key={`${item.producto.id}-${item.talle}-${item.medioPago}`}
-                      className="flex gap-3 bg-[#F8F8F8] rounded-lg p-3"
+                      className="flex gap-3 bg-[#1a1a1a] border border-white/5 rounded-xl p-3"
                     >
-                      <div className="relative w-20 h-20 flex-shrink-0 bg-white rounded-md overflow-hidden">
+                      <div className="relative w-20 h-20 flex-shrink-0 bg-[#111111] rounded-lg overflow-hidden">
                         <Image
                           src={item.producto.imagen}
                           alt={item.producto.nombre}
@@ -135,13 +136,13 @@ export default function Cart() {
                       </div>
 
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-sm font-medium text-text line-clamp-2">
+                        <h3 className="text-sm font-medium text-white line-clamp-2">
                           {item.producto.nombre}
                         </h3>
-                        <p className="text-xs text-text-muted mt-0.5">
+                        <p className="text-xs text-white/40 mt-0.5">
                           Talle {item.talle} · {mediosPagoLabels[item.medioPago]}
                         </p>
-                        <p className="text-sm font-bold text-primary mt-1">
+                        <p className="text-sm font-bold text-red-500 mt-1">
                           {formatPrice(item.producto.precios[item.medioPago])}
                         </p>
 
@@ -155,11 +156,11 @@ export default function Cart() {
                                 item.cantidad - 1
                               )
                             }
-                            className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-text hover:border-primary transition-colors"
+                            className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:border-red-600 hover:text-red-500 transition-colors"
                           >
                             −
                           </button>
-                          <span className="text-sm font-medium w-6 text-center">
+                          <span className="text-sm font-medium w-6 text-center text-white">
                             {item.cantidad}
                           </span>
                           <button
@@ -171,7 +172,7 @@ export default function Cart() {
                                 item.cantidad + 1
                               )
                             }
-                            className="w-7 h-7 rounded-full border border-border flex items-center justify-center text-text hover:border-primary transition-colors"
+                            className="w-7 h-7 rounded-full border border-white/10 flex items-center justify-center text-white/60 hover:border-red-600 hover:text-red-500 transition-colors"
                           >
                             +
                           </button>
@@ -180,7 +181,7 @@ export default function Cart() {
                             onClick={() =>
                               removeItem(item.producto.id, item.talle, item.medioPago)
                             }
-                            className="ml-auto text-text-muted hover:text-red-600 transition-colors"
+                            className="ml-auto text-white/20 hover:text-red-400 transition-colors"
                           >
                             <svg
                               xmlns="http://www.w3.org/2000/svg"
@@ -206,17 +207,18 @@ export default function Cart() {
             </div>
 
             {items.length > 0 && (
-              <div className="border-t border-border p-4 space-y-3">
+              <div className="p-4 space-y-3" style={{ borderTop: "1px solid rgba(255,255,255,0.1)" }}>
                 <div className="flex justify-between items-center">
-                  <span className="text-text-muted">Total</span>
-                  <span className="text-xl font-bold text-text">
+                  <span className="text-white/50">Total</span>
+                  <span className="text-xl font-black text-white">
                     {formatPrice(totalPrice)}
                   </span>
                 </div>
 
                 <button
                   onClick={handleCheckout}
-                  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-md font-medium flex items-center justify-center gap-2 transition-colors"
+                  className="w-full bg-[#25D366] hover:bg-[#20bd5a] text-white py-3 rounded-full font-bold flex items-center justify-center gap-2 transition-all duration-300"
+                  style={{ boxShadow: "0 4px 20px rgba(37,211,102,0.3)" }}
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -231,7 +233,7 @@ export default function Cart() {
 
                 <button
                   onClick={clearCart}
-                  className="w-full text-text-muted hover:text-red-600 text-sm py-2 transition-colors"
+                  className="w-full text-white/30 hover:text-red-400 text-sm py-2 transition-colors"
                 >
                   Vaciar carrito
                 </button>
