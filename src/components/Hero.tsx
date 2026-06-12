@@ -16,7 +16,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative bg-[#0a0a0a] h-[80vw] min-h-[420px] md:h-screen overflow-hidden">
+    <section className="relative bg-[#0a0a0a] h-[85vw] min-h-[480px] md:h-screen overflow-hidden">
       <div className="absolute inset-0">
         <Image
           src={banner}
@@ -29,7 +29,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/60 md:bg-black/50" />
       </div>
 
-      <div className="relative z-10 flex flex-col justify-start md:justify-center h-full px-6 md:px-16 max-w-2xl pt-16 md:pt-0 pb-24 md:pb-0">
+      <div className="relative z-10 flex flex-col justify-start md:justify-center h-full px-6 md:px-16 max-w-2xl pt-14 md:pt-0 pb-16 md:pb-0">
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -37,7 +37,7 @@ export default function Hero() {
             transition={{ duration: 0.5 }}
           >
             <span
-              className="inline-block border border-red-600/50 backdrop-blur-sm text-red-500 text-xs font-bold px-4 py-1.5 rounded mb-6 tracking-wide uppercase"
+              className="inline-block border border-red-600/50 backdrop-blur-sm text-red-500 text-xs font-bold px-4 py-1.5 rounded mb-4 md:mb-6 tracking-wide uppercase"
             >
               2 locales en Berazategui
             </span>
@@ -57,7 +57,7 @@ export default function Hero() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="w-20 h-1 bg-red-600 mt-6 mb-6 rounded-full origin-left"
+            className="w-20 h-1 bg-red-600 mt-4 md:mt-6 mb-4 md:mb-6 rounded-full origin-left"
           />
 
           <motion.p
@@ -73,7 +73,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.5 }}
-            className="flex flex-col sm:flex-row gap-4 mt-8"
+            className="flex flex-col sm:flex-row gap-3 md:gap-4 mt-6 md:mt-8"
           >
             <Link
               href="/catalogo"
