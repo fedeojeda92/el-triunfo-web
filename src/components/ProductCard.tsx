@@ -45,12 +45,13 @@ export default function ProductCard({ producto }: { producto: Producto }) {
     <div className="group bg-[#111111] border border-white/5 rounded-2xl overflow-hidden hover:border-white/15 transition-all duration-300 hover:-translate-y-1">
       <div
         className="relative w-full aspect-square bg-[#1a1a1a] flex items-center justify-center overflow-hidden cursor-zoom-in"
-        onClick={() => setLightboxOpen(true)}
+        onClick={(e) => { e.stopPropagation(); setLightboxOpen(true) }}
       >
         <Image
           src={producto.imagen}
           alt={producto.nombre}
           fill
+          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           className="object-contain p-4 scale-90 group-hover:scale-105 transition-transform duration-500"
           onError={(e) => {
             const target = e.currentTarget

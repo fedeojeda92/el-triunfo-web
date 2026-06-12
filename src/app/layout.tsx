@@ -41,6 +41,7 @@ export default function RootLayout({
   return (
     <html lang="es" className={`${inter.variable} ${bebasNeue.variable}`}>
       <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

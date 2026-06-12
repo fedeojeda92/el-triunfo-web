@@ -16,7 +16,7 @@ export default function ContactoFooter() {
             ¿DÓNDE ENCONTRARNOS?
           </motion.h2>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 mb-12">
             <div className="bg-[#1a1a1a] border border-white/5 rounded-2xl p-8 hover:border-red-600/30 transition-all duration-300">
               <h3 className="text-red-500 font-bold tracking-widest text-sm uppercase mb-2">
                 LOCAL 1
@@ -43,7 +43,7 @@ export default function ContactoFooter() {
 
           <div id="contacto" className="text-center mb-12">
             <h3 className="font-bebas text-2xl mb-4 text-white">Medios de pago</h3>
-            <div className="flex flex-wrap gap-3 justify-center mt-8">
+            <div className="flex flex-wrap justify-center gap-2 md:gap-3 mt-6 md:mt-8">
               <span className="bg-[#1a1a1a] border border-white/10 rounded-full px-4 py-2 text-white/70 text-sm">
                 Efectivo
               </span>
@@ -64,7 +64,7 @@ export default function ContactoFooter() {
               href="https://wa.me/5491124652183?text=Hola!%20Vi%20el%20cat%C3%A1logo%20online%20y%20quiero%20consultar"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white px-8 py-4 rounded-full font-bold transition-all duration-300 text-lg"
+              className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#20bd5a] text-white w-full md:w-auto justify-center px-8 py-4 rounded-full font-bold transition-all duration-300 text-lg"
               style={{ boxShadow: "0 4px 20px rgba(37,211,102,0.3)" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLElement).style.boxShadow = "0 4px 30px rgba(37,211,102,0.5)"

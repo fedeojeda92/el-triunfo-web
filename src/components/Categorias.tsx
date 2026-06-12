@@ -24,7 +24,7 @@ export default function Categorias() {
           Explorá por categoría
         </motion.h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
           {categoriasInfo.map((cat, index) => {
             const count = productos.filter(
               (p) => p.categoria === cat.id
@@ -39,9 +39,9 @@ export default function Categorias() {
               >
                 <Link
                   href={`/catalogo?categoria=${cat.id}`}
-                  className="group relative bg-[#1a1a1a] border border-white/10 hover:border-red-600/50 rounded-xl p-8 flex flex-col gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(220,38,38,0.15)] overflow-hidden cursor-pointer"
+                  className="group relative bg-[#1a1a1a] border border-white/10 hover:border-red-600/50 rounded-xl p-4 md:p-8 flex flex-col gap-2 transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_8px_30px_rgba(220,38,38,0.15)] overflow-hidden cursor-pointer"
                 >
-                  <span className="text-2xl font-black tracking-wider text-white">
+                  <span className="text-lg md:text-2xl font-black tracking-wider text-white">
                     {cat.label}
                   </span>
                   <span className="text-white/40 text-sm">

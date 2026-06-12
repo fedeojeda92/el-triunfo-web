@@ -1,56 +1,35 @@
 "use client"
 
-import { useState, useEffect, useCallback } from "react"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
-const slides = [
-  { src: "/images/buzo-8701.png", alt: "Buzo M51 8701" },
-  { src: "/images/buzo-princeton.png", alt: "Buzo M51 Princeton" },
-  { src: "/images/remera-7297.png", alt: "Remera M51 7297" },
-  { src: "/images/remera-7318.png", alt: "Remera M51 7318" },
-  { src: "/images/borcego-vurkina.png", alt: "Calzado Citadina VURKINA" },
-]
+const banners = ["/banner.png", "/banner2.png"]
 
 export default function Hero() {
-  const [current, setCurrent] = useState(0)
-
-  const next = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % slides.length)
-  }, [])
+  const [banner, setBanner] = useState<string>("/banner.png")
 
   useEffect(() => {
-    const timer = setInterval(next, 4000)
-    return () => clearInterval(timer)
-  }, [next])
+    const random = banners[Math.floor(Math.random() * banners.length)]
+    setBanner(random)
+  }, [])
 
   return (
-    <section className="relative bg-[#0a0a0a] h-[550px] sm:h-[600px] lg:h-[650px] flex items-center overflow-hidden">
+    <section className="relative bg-[#0a0a0a] h-[80vw] min-h-[420px] md:h-screen overflow-hidden">
       <div className="absolute inset-0">
-        <AnimatePresence mode="popLayout">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.98 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute inset-0"
-          >
-            <Image
-              src={slides[current].src}
-              alt={slides[current].alt}
-              fill
-              className="object-contain"
-              priority={current === 0}
-            />
-          </motion.div>
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a]/95 via-[#0a0a0a]/70 to-[#0a0a0a]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent" />
+        <Image
+          src={banner}
+          alt="El Triunfo"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-black/60 md:bg-black/50" />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 w-full">
+      <div className="relative z-10 flex flex-col justify-start md:justify-center h-full px-6 md:px-16 max-w-2xl pt-16 md:pt-0 pb-24 md:pb-0">
         <div className="max-w-2xl">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -68,7 +47,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-bebas text-6xl sm:text-7xl lg:text-8xl text-white leading-[0.9] tracking-wide"
+            className="font-bebas text-4xl md:text-7xl text-white leading-[0.9] tracking-wide"
           >
             TU ESTILO
             <span className="block text-red-600">TU PRECIO</span>
@@ -111,20 +90,6 @@ export default function Hero() {
             </a>
           </motion.div>
         </div>
-      </div>
-
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex gap-2">
-        {slides.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrent(i)}
-            className={`w-2.5 h-2.5 rounded-full transition-all duration-300 ${
-              i === current
-                ? "bg-red-600 w-8"
-                : "bg-white/30 hover:bg-white/50"
-            }`}
-          />
-        ))}
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent" />

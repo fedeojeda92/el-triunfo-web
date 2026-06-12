@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, useCallback } from "react"
+import { createPortal } from "react-dom"
 import { motion, AnimatePresence } from "framer-motion"
 
 type Props = {
@@ -14,8 +15,13 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
   const [scale, setScale] = useState(1)
   const [position, setPosition] = useState({ x: 0, y: 0 })
   const [isDragging, setIsDragging] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const dragStart = useRef({ x: 0, y: 0 })
   const lastPos = useRef({ x: 0, y: 0 })
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (isOpen) {
@@ -24,9 +30,13 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
     }
   }, [isOpen])
 
+  const stableOnClose = useCallback(() => {
+    onClose()
+  }, [onClose])
+
   useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose()
+      if (e.key === "Escape") stableOnClose()
       if (e.key === "+" || e.key === "=") handleZoomIn()
       if (e.key === "-") handleZoomOut()
     }
@@ -38,7 +48,7 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
       document.removeEventListener("keydown", handleKey)
       document.body.style.overflow = ""
     }
-  }, [isOpen, onClose])
+  }, [isOpen, stableOnClose])
 
   const handleZoomIn = () => {
     setScale((s) => Math.min(s + 0.5, 5))
@@ -87,7 +97,9 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
     }
   }
 
-  return (
+  if (!mounted) return null
+
+  return createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -97,11 +109,12 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
           transition={{ duration: 0.2 }}
           className="fixed inset-0 z-[60] bg-black/90 flex items-center justify-center"
           onClick={(e) => {
-            if (e.target === e.currentTarget) onClose()
+            e.stopPropagation()
+            stableOnClose()
           }}
         >
           <button
-            onClick={onClose}
+            onClick={(e) => { e.stopPropagation(); stableOnClose() }}
             className="absolute top-4 right-4 text-white/80 hover:text-white z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors pointer-events-auto"
           >
             <svg
@@ -176,6 +189,7 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
             onPointerDown={handlePointerDown}
             onPointerMove={handlePointerMove}
             onPointerUp={handlePointerUp}
+            onClick={(e) => e.stopPropagation()}
             style={{ cursor: scale > 1 ? (isDragging ? "grabbing" : "grab") : "zoom-in" }}
           >
             <div
@@ -195,6 +209,7 @@ export default function Lightbox({ src, alt, isOpen, onClose }: Props) {
           </div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   )
 }

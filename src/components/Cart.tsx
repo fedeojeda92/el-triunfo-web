@@ -131,6 +131,7 @@ export default function Cart() {
                           src={item.producto.imagen}
                           alt={item.producto.nombre}
                           fill
+                          sizes="80px"
                           className="object-contain p-2"
                         />
                       </div>
